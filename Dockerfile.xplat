@@ -1,0 +1,36 @@
+FROM default-route-openshift-image-registry.apps.prod01.fis-cloud.fpt.com/openshift/nodejs:16-ubi8 AS builder
+
+ARG module
+WORKDIR /root/ca
+USER 0
+COPY package.json pnpm-lock.yaml ./
+RUN chown -R 1001:0 ./
+USER 1001
+RUN npm install -g pnpm
+RUN pnpm fetch
+
+USER 0
+COPY pnpm-workspace.yaml .
+COPY packages packages
+COPY apps/$module/package.json apps/$module/
+RUN chown -R 1001:0 ./
+USER 1001
+
+RUN pnpm --filter $module^... --offline install
+RUN pnpm --filter $module^... build
+RUN pnpm --filter $module --offline install
+COPY apps/$module apps/$module
+RUN pnpm --filter $module build
+
+FROM default-route-openshift-image-registry.apps.prod01.fis-cloud.fpt.com/openshift/nodejs:16-ubi8 
+
+ARG module
+WORKDIR /root/ca
+
+COPY --from=builder /root/ca/package.json .
+COPY --from=builder /root/ca/apps/$module apps/$module
+COPY --from=builder /root/ca/packages packages
+COPY --from=builder /root/ca/node_modules node_modules
+
+ENV module $module 
+CMD node apps/$module/build/ca.$module.js

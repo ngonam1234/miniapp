@@ -1,0 +1,208 @@
+version: "3.8"
+
+services:
+  gateway:
+    container_name: gateway 
+    hostname: ca.gateway
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    env_file: ./nginx/.env
+    depends_on:
+      - auth
+      - auto
+      - file
+      - incident
+      - report
+      - request
+      - sam
+      - tenant
+      - role
+
+  auth:
+    container_name: auth 
+    hostname: ca.auth
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: auth
+    restart: always
+    ports:
+      - 6801:6801
+    user: root
+    env_file: ./apps/auth/.env
+    environment:
+      - CA_AUTH_USER_SERVICE_HOST=http://ca.user
+      - CA_AUTH_TENANT_SERVICE_HOST=http://ca.tenant
+      - CA_AUTH_GROUP_SERVICE_HOST=http://ca.user
+      - CA_AUTH_MAIL_SERVICE_HOST=http://ca.mail
+
+  auto:
+    container_name: auto 
+    hostname: ca.auto
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: auto
+    restart: always
+    ports:
+      - 6810:6810
+    user: root
+    env_file: ./apps/auto/.env
+    environment:
+      - CA_AUTO_USER_SERVICE_HOST=http://ca.user
+      - CA_AUTO_TENANT_SERVICE_HOST=http://ca.tenant
+      - CA_AUTO_GROUP_SERVICE_HOST=http://ca.user
+      - CA_AUTO_MAIL_SERVICE_HOST=http://ca.mail
+
+  billing:
+    container_name: billing
+    hostname: ca.billing
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: billing
+    restart: always
+    ports:
+      - 6808:6808
+    user: root
+    env_file: ./apps/billing/.env
+
+  file:
+    container_name: file
+    hostname: ca.file
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: file
+    restart: always
+    ports:
+      - 6807:6807
+    user: root
+    env_file: ./apps/file/.env
+
+  identity:
+    container_name: identity
+    hostname: ca.identity
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: identity
+    restart: always
+    ports:
+      - 6802:6802
+    user: root
+    env_file: ./apps/identity/.env
+  
+  incident:
+    container_name: incident
+    hostname: ca.incident
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: incident
+    restart: always
+    ports:
+      - 6805:6805
+    user: root
+    env_file: ./apps/incident/.env
+
+  mail:
+    container_name: mail
+    hostname: ca.mail
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: mail
+    restart: always
+    ports:
+      - 6803:6803
+    user: root
+    env_file: ./apps/mail/.env
+
+  report:
+    container_name: report
+    hostname: ca.report
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: report
+    restart: always
+    ports:
+      - 6811:6811
+    user: root
+    env_file: ./apps/report/.env
+
+  request:
+    container_name: request
+    hostname: ca.request
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: request
+    restart: always
+    ports:
+      - 6806:6806
+    user: root
+    env_file: ./apps/request/.env
+
+  sam:
+    container_name: sam
+    hostname: ca.sam
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: sam
+    restart: always
+    ports:
+      - 6812:6812
+    user: root
+    env_file: ./apps/sam/.env
+
+  tenant:
+    container_name: tenant
+    hostname: ca.tenant
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: tenant
+    restart: always
+    ports:
+      - 6804:6804
+    user: root
+    env_file: ./apps/tenant/.env
+    environment:
+      - CA_TENANT_USER_SERVICE_HOST=http://ca.user
+      - CA_TENANT_AUTH_SERVICE_HOST=http://ca.auth
+
+  role:
+    container_name: role
+    hostname: ca.role
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        module: role
+    restart: always
+    ports:
+      - 6813:6813
+    user: root
+    env_file: ./apps/role/.env
+
+networks:
+  default:
+    name: ca-network

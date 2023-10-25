@@ -1,0 +1,329 @@
+{
+    "id": "fc21002c-b331-11ed-afa1-0242ac120002",
+    "name": "Workflow mặc định",
+    "description": "Workflow mặc định không cho chỉnh sửa xóa",
+    "created_time": "22/12/2022 14:00:00",
+    "updated_time": "22/12/2022 14:00:00",
+    "updated_by": "hungvm24@fpt.com.vn",
+    "type": "DEFAULT",
+    "is_active": true,
+    "tenant": null,
+    "template": [
+        {
+            "template_id": "xxxx",
+            "name": "Template mặc định"
+        }
+    ],
+    "edges": [
+        {
+            "source": "afd502fa-b330-11ed-afa1-0242ac120002",
+            "target": "afd505b6-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": null
+            }
+        },
+        {
+            "source": "afd505b6-b330-11ed-afa1-0242ac120002",
+            "target": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Xử lý",
+                "roles": [
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Người yêu cầu",
+                                "name": "requester"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Loại yêu cầu",
+                                "name": "type"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Mức độ ưu tiên",
+                                "name": "priority"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Nhóm hỗ trợ",
+                                "name": "groups"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Cán bộ hỗ trợ",
+                                "name": "technicians"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Dịch vụ sử dụng",
+                                "name": "service"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Dịch vụ con",
+                                "name": "sub_service"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Trạng thái",
+                                "name": "status"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Tên yêu cầu",
+                                "name": "title"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Chi tiết yêu cầu",
+                                "name": "detail"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "source": "afd505b6-b330-11ed-afa1-0242ac120002",
+            "target": "afd50700-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Hủy",
+                "roles": [
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Người yêu cầu",
+                                "name": "requester"
+                            }
+                        }
+                    },
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Bình luận",
+                                "name": "comment"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "source": "afd50700-b330-11ed-afa1-0242ac120002",
+            "target": "afd51448-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": null
+            }
+        },
+        {
+            "source": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "target": "afd50962-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Chờ bổ sung thông tin",
+                "roles": [
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Bình luận",
+                                "name": "comment"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "source": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "target": "afd50a84-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Xử lý xong",
+                "roles": [
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Giải pháp",
+                                "name": "solution"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "source": "afd50962-b330-11ed-afa1-0242ac120002",
+            "target": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Đã bổ sung thông tin"
+            }
+        },
+        {
+            "source": "afd50a84-b330-11ed-afa1-0242ac120002",
+            "target": "afd50bce-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Mở lại",
+                "roles": [
+                    {
+                        "type": "AND",
+                        "condition": {
+                            "type": "NOT_EMPTY",
+                            "field": {
+                                "title": "Bình luận",
+                                "name": "comment"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "source": "afd50bce-b330-11ed-afa1-0242ac120002",
+            "target": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Xử lý lại"
+            }
+        },
+        {
+            "source": "afd50a84-b330-11ed-afa1-0242ac120002",
+            "target": "afd5107e-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": "Hoàn thành"
+            }
+        },
+        {
+            "source": "afd5107e-b330-11ed-afa1-0242ac120002",
+            "target": "afd51448-b330-11ed-afa1-0242ac120002",
+            "transition": {
+                "name": null
+            }
+        }
+    ],
+    "nodes": [
+        {
+            "id": "afd502fa-b330-11ed-afa1-0242ac120002",
+            "type": "START"
+        },
+        {
+            "id": "afd505b6-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Open",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd50700-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Cancel",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd5082c-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Inprogress",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd50962-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "On hold",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd50a84-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Resolved",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd50bce-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Reopen",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd5107e-b330-11ed-afa1-0242ac120002",
+            "type": "OTHER",
+            "status": {
+                "id": "***",
+                "name": "Closed",
+                "description": ""
+            }
+        },
+        {
+            "id": "afd51448-b330-11ed-afa1-0242ac120002",
+            "type": "END"
+        }
+    ]
+}
