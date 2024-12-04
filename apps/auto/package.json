@@ -27,7 +27,7 @@
         "logger": "workspace:*",
         "utils": "workspace:*",
         "mquery": "workspace:*",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
