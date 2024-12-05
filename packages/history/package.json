@@ -18,7 +18,7 @@
         "express": "^4.18.2",
         "kafkajs": "^2.2.4",
         "logger": "workspace:*",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "mquery": "workspace:*"
     },
     "devDependencies": {
