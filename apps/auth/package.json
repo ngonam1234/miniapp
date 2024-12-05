@@ -28,7 +28,7 @@
         "ioredis": "^5.3.1",
         "jsonwebtoken": "^9.0.0",
         "logger": "workspace:*",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "mquery": "workspace:*",
         "qs": "^6.11.2",
         "utils": "workspace:*",
