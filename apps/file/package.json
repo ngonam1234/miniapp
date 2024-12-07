@@ -23,7 +23,7 @@
         "jsonwebtoken": "^9.0.0",
         "logger": "workspace:*",
         "minio": "^7.0.32",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "mquery": "workspace:*",
         "utils": "workspace:*",
         "ioredis": "^5.3.1",
