@@ -25,7 +25,7 @@
         "form-data": "^4.0.0",
         "ioredis": "^5.3.1",
         "logger": "workspace:*",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "nodemailer": "^6.9.1",
         "uuid": "^9.0.0"
     },
