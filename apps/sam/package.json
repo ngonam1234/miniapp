@@ -24,7 +24,7 @@
         "joi": "^17.9.2",
         "jsonwebtoken": "^9.0.0",
         "logger": "workspace:*",
-        "mongoose": "^7.0.1",
+        "mongoose": "^8.8.3",
         "mquery": "workspace:*",
         "utils": "workspace:*",
         "uuid": "^9.0.0"
