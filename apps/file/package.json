@@ -22,7 +22,7 @@
         "express-validator": "^6.15.0",
         "jsonwebtoken": "^9.0.0",
         "logger": "workspace:*",
-        "minio": "^7.0.32",
+        "minio": "^7.1.1",
         "mongoose": "^7.0.1",
         "mquery": "workspace:*",
         "utils": "workspace:*",
